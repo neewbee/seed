@@ -1,12 +1,7 @@
-# dva-example-user-dashboard
+# special-waffle
 
-详见[《12 步 30 分钟，完成用户管理的 CURD 应用 (react+dva+antd)》](https://github.com/sorrycc/blog/issues/18)。
-
----
-
-<p align="center">
-  <img src="https://zos.alipayobjects.com/rmsportal/bmkNCEoluwGaeGjYjInf.png" />
-</p>
+a fall-stack scaffold build with antd dva and nodejs
+----------------------------------------------------
 
 ## Getting Started
 Install dependencies.
@@ -20,5 +15,3 @@ Start server.
 ```bash
 $ npm start
 ```
-
-If success, app will be open in your default browser automatically.
