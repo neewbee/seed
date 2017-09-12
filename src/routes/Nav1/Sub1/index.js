@@ -3,6 +3,9 @@ import { connect } from 'dva'
 import { Link, Switch, Route, withRouter, routerRedux } from 'dva/router'
 import { Layout, Menu, Breadcrumb, Icon, Row, Col, Button, Popconfirm } from 'antd'
 
+import queryString from 'query-string'
+import qs from 'qs'
+
 import List from './List'
 import Filter from './Filter'
 import Modal from './Modal'
@@ -17,8 +20,9 @@ const breadcrumbNameMap = {
 const Sub1 = ({ location, dispatch, sub1, loading, ...rest }) => {
 
   const { list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys } = sub1
-
+  const { pageSize } = pagination
   const modalProps = {
+    location,
     item: modalType === 'create' ? {} : currentItem,
     visible: modalVisible,
     maskClosable: false,
@@ -26,11 +30,11 @@ const Sub1 = ({ location, dispatch, sub1, loading, ...rest }) => {
     confirmLoading: false,
     title: `${modalType === 'create' ? 'Create User' : 'Update User'}`,
     wrapClassName: 'vertical-center-modal',
-    onOk (data) {
-      console.log("onOK------------")
+    onOk ({formData, search}) {
       dispatch({
         type: `sub1/${modalType}`,
-        payload: data,
+        formData,
+        search,
       })
     },
     onCancel () {
@@ -50,16 +54,16 @@ const Sub1 = ({ location, dispatch, sub1, loading, ...rest }) => {
       const { query, pathname } = location
       dispatch(routerRedux.push({
         pathname,
-        query: {
+        search: qs.stringify({
           ...query,
           page: page.current,
           pageSize: page.pageSize,
-        },
+        }),
       }))
     },
     onDeleteItem (id) {
       dispatch({
-        type: 'user/delete',
+        type: 'sub1/delete',
         payload: id,
       })
     },
@@ -91,24 +95,29 @@ const Sub1 = ({ location, dispatch, sub1, loading, ...rest }) => {
       ...location.query,
     },
     onFilterChange (value) {
+      console.log("qs.stringify", qs.stringify({
+        ...value,
+        page: 1,
+        pageSize,
+      }))
       dispatch(routerRedux.push({
         pathname: location.pathname,
-        query: {
+        search: qs.stringify({
           ...value,
           page: 1,
           pageSize,
-        },
+        }),
       }))
     },
     onSearch (fieldsValue) {
       fieldsValue.keyword.length ? dispatch(routerRedux.push({
         pathname: '/nav1/subNav1',
-        query: {
+        search: qs.stringify({
           field: fieldsValue.field,
           keyword: fieldsValue.keyword,
-        },
+        }),
       })) : dispatch(routerRedux.push({
-        pathname: '/user',
+        pathname: '/nav1/subNav1',
       }))
     },
     onAdd () {
@@ -179,6 +188,5 @@ const Sub1 = ({ location, dispatch, sub1, loading, ...rest }) => {
 }
 
 export default withRouter(connect(({ sub1, loading, ...rest }) => {
-  console.log(sub1)
   return ({ sub1, loading })
 })(Sub1))

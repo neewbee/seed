@@ -1,15 +1,32 @@
-var Model = require('../models/index')
+import qs from 'qs'
+
+const Model = require('../models/index')
 
 /* Save a user */
 // FIXME isMale 字段
-var saveUser = function(req, res) {
+const saveUser = function (req, res) {
   const { address , age, email, isMale:gender, name, nickName, phone } = req.body
   new Model.User()
     .save({ address , age, email, gender, name, nickName, phone, created_at:Date.now()})
-    .then(function() {
+    .then(function () {
       res.status(201).end()
     })
-    .catch(function(error) {
+    .catch(function (error) {
+      console.log(error)
+      res.status(500).send({code:500, message:"an error occurred"})
+    })
+}
+
+const updateUser = function (req, res) {
+  const { address , age, email, isMale:gender, name, nickName, phone } = req.body
+  const user_id = req.params.id
+
+  new Model.User({id:user_id})
+    .save({ address , age, email, gender, name, nickName, phone, updated_at:Date.now()})
+    .then(function () {
+      res.status(202).end()
+    })
+    .catch(function (error) {
       console.log(error)
       res.status(500).send({code:500, message:"an error occurred"})
     })
@@ -17,64 +34,75 @@ var saveUser = function(req, res) {
 
 // FIXME complete pagination implementation
 /* Get all users */
-var getAllUsers = function(req, res) {
-  const { page, pageSize, name } = req.query
-
+const getAllUsers = function (req, res) {
+  const { name, address, createTime, page, pageSize } = qs.parse(req.query)
+  console.log("params: ", qs.parse(req.query))
   new Model.User()
     .query(qb => {
-      if (name) {
-        qb.where('name', '=', name)
+      if ( name ) {
+        qb.where('name', 'like', '%'+ name + '%')
+      }
+      if ( createTime && createTime.length ) {
+        qb.where('created_at', '>', createTime[0]).andWhere('created_at', '<', createTime[1])
+      }
+      if (address) {
+        qb.where('address', '=', address.join(' ') )
       }
       qb.orderBy('id', 'DESC')
-      qb.offset(Number(pageSize) * Number(page)).limit(Number(pageSize))
+      // qb.offset(Number(pageSize) * (Number(page) - 1)).limit(Number(pageSize))
     })
     .fetchAll()
-    .then(function(users) {
-      var result = Object.assign({}, { data: users }, req.query, {
-        totalPage: 10,
+    .then(function (users) {
+      users.query((qb) => {
+        qb.offset(Number(pageSize) * (Number(page) - 1)).limit(Number(pageSize))
+        const result = Object.assign({}, { data: users }, req.query, {
+          total: users.length,
+        })
+        res.json(result)
       })
-      console.log('result', result)
-      res.json(result)
     })
-    .catch(function(error) {
+    .catch(function (error) {
       console.log(error)
       res.send('An error occured')
     })
 }
 
 /* Delete a user */
-var deleteUser = function(req, res) {
-  var userId = req.params.id
-  new Model.User().where('id', userId).destroy().catch(function(error) {
+const deleteUser = function (req, res) {
+  console.log(req.params.id)
+  const userId = req.params.id
+  new Model.User().where('id', userId).destroy().then(() => {
+    res.status(202).end()
+  }).catch(function (error) {
     console.log(error)
     res.send('An error occured')
   })
 }
 
 /* Get a user */
-var getUser = function(req, res) {
-  var userId = req.params.id
+const getUser = function (req, res) {
+  const userId = req.params.id
   new Model.User()
     .where('id', userId)
     .fetch()
-    .then(function(user) {
+    .then(function (user) {
       res.json(user)
     })
-    .catch(function(error) {
+    .catch(function (error) {
       console.log(error)
       res.send('An error occured')
     })
 }
 /* Get a user */
-var deleteUsers = function(req, res) {
-  var userId = req.params.id
+const deleteUsers = function (req, res) {
+  const userId = req.params.id
   new Model.User()
     .where('id', userId)
     .fetch()
-    .then(function(user) {
+    .then(function (user) {
       res.json(user)
     })
-    .catch(function(error) {
+    .catch(function (error) {
       console.log(error)
       res.send('An error occured')
     })
@@ -83,6 +111,7 @@ var deleteUsers = function(req, res) {
 /* Exports all methods */
 module.exports = {
   saveUser: saveUser,
+  updateUser: updateUser,
   getAllUsers: getAllUsers,
   deleteUsers: deleteUsers,
   deleteUser: deleteUser,

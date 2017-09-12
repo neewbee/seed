@@ -4,6 +4,9 @@ import { Route, Link, Redirect, withRouter, Switch } from 'dva/router'
 import dynamic from 'dva/dynamic'
 import { Layout, Menu } from 'antd'
 
+import '../themes/index.less'
+import './index.less'
+
 import NoMatch from './NoMatch'
 import config from '../utils/config'
 import { getNavMenu, getRoutesByKeyValue } from '../utils/utilities'

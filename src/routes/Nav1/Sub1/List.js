@@ -22,7 +22,7 @@ const List = ({
     } else if (e.key === '2') {
       confirm({
         title: 'Are you sure delete this record?',
-        onOk () {
+        onOk() {
           onDeleteItem(record.id)
         },
       })
@@ -77,8 +77,11 @@ const List = ({
     },
     {
       title: 'CreateTime',
-      dataIndex: 'createTime',
+      dataIndex: 'created_at',
       key: 'createTime',
+      render: (text) => {
+        return `${new Date(text).toLocaleDateString()}`
+      }
     },
     {
       title: 'Operation',

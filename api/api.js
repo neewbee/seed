@@ -16,6 +16,6 @@ app.use(morgan(':method :url :status :date[iso] :res[content-length] - :response
 
 Router(app)
 
-app.listen(3001, function () {
-  console.log('CORS-enabled web server listening on port 3001')
+app.listen(3000, function () {
+  console.log('CORS-enabled web server listening on port 3000')
 })

@@ -2,7 +2,7 @@ var bookshelf = require('./../config/sqlite').bookshelf
 
 var User = bookshelf.Model.extend({
   tableName: 'users',
-  useNullAsDefault:true
+  useNullAsDefault:true,
 })
 
 var Posts = bookshelf.Model.extend({

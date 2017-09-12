@@ -1,5 +1,5 @@
 import modelExtend from 'dva-model-extend'
-
+import { DEFAULT_PAGE_SIZE } from '../utils/config'
 // 通用 Model 更新state 清除state 等等
 const baseModel = {
   reducers: {
@@ -23,6 +23,7 @@ const paginationModel = modelExtend(baseModel, {
       showTotal: total => `Total ${total} Items`,
       current: 1,
       total: 0,
+      pageSize:DEFAULT_PAGE_SIZE,
     },
   },
 

@@ -42,8 +42,8 @@ const Filter = ({
     const { createTime } = fields
     if (createTime.length) {
       fields.createTime = [
-        createTime[0].format('YYYY-MM-DD'),
-        createTime[1].format('YYYY-MM-DD'),
+        createTime[0].valueOf(),
+        createTime[1].valueOf(),
       ]
     }
     return fields
@@ -72,11 +72,13 @@ const Filter = ({
 
   const handleChange = (key, values) => {
     let fields = getFieldsValue()
+    console.log("fields : ", fields)
     fields[key] = values
     fields = handleFields(fields)
     onFilterChange(fields)
   }
   const { name, address } = filter
+
 
   let initialCreateTime = []
   if (filter.createTime && filter.createTime[0]) {

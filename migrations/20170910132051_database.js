@@ -1,7 +1,7 @@
 exports.up = (knex, Promise) => {
   const createUsers = knex.schema.createTable('users', t => {
     t.increments('id').unsigned().primary()
-    t.dateTime('created_at').notNull()
+    t.dateTime('created_at').nullable()
     t.dateTime('updated_at').nullable()
     t.dateTime('deleted_at').nullable()
 

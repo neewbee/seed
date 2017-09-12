@@ -15,6 +15,7 @@ const formItemLayout = {
 }
 
 const modal = ({
+  location='',
   item = {},
   onOk,
   form: {
@@ -30,10 +31,13 @@ const modal = ({
         return
       }
       const data = {
-        ...getFieldsValue(),
-        key: item.key,
+        formData:{
+          ...getFieldsValue(),
+          key: item.key,
+        },
+        search:location.search,
       }
-      data.address = data.address.join(' ')
+      data.formData.address = data.formData.address.join(' ')
       onOk(data)
     })
   }

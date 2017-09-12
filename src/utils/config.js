@@ -40,7 +40,7 @@ const menu_type_1 = [
     ],
   },
 ]
-const APIV1 = 'http://10.9.35.41:3001/api/v1'
+const APIV1 = 'http://10.9.35.41:3000/api/v1'
 const APIV2 = '/api/v2'
 const menu_type_2 = {
   flag: 1,
@@ -116,7 +116,7 @@ const menu_type_2 = {
 
 module.exports = {
   menu_type_2,
-
+  DEFAULT_PAGE_SIZE:10,
   name: 'AntD Admin',
   prefix: 'antdAdmin',
   footerText: 'Ant Design Admin  © 2017 zuiidea',
