@@ -6,11 +6,13 @@ import { Layout, Menu, Breadcrumb, Icon } from 'antd'
 import sub1 from './Sub1'
 import option1 from './Sub2/option1'
 import NoMatch from '../NoMatch'
-import { menu_type_2 } from '../../utils/config'
-import { getRoutesByKeyValue, listToTree, getPidsAndIdByRoute } from '../../utils/utilities'
+import { menu_type_2, footerText } from '../../utils/config'
+import { getRoutesByKeyValue, listToTree, getPidsAndIdByRoute, getNavMenu } from '../../utils/utilities'
 
 const { SubMenu } = Menu
 const { Header, Content, Sider, Footer } = Layout
+
+
 
 const tree = listToTree(menu_type_2.menu).filter(_=>_.pid === 1)
 
@@ -23,6 +25,19 @@ const AuthRoute = ({ component: Component, path, ...rest }) => {
     return <Route {...rest} render={props => <Component {...props} />} />
   }
 }
+
+// 获取一级路由
+const getNavItems = menus => {
+  return menus.map(({ name, route, id }) => {
+    return (
+      <Menu.Item key={id}>
+        <Link to={route}>{name}</Link>
+      </Menu.Item>
+    )
+  })
+}
+
+const menus = getNavMenu(menu_type_2)
 
 const getMenus = tree => {
   return tree.map(item => {
@@ -72,22 +87,39 @@ const Nav1 = ({ location }) => {
   selectedKeys =  [String(id)]
 
   return (
-    <Layout>
-      <Sider width={200} style={{ background: '#fff' }}>
+    <Layout style={{ height: '100vh' }}>
+      <Header className="header">
+        <div className="logo" />
         <Menu
-          mode="inline"
-          openkeys={openKeys}
-          selectedKeys={selectedKeys}
-          style={{ height: '100%', borderRight: 0 }}
+          theme="dark"
+          mode="horizontal"
+          style={{ lineHeight: '64px' }}
+          selectedKeys={[String(id)]}
         >
-          {getMenus(tree)}
+          {getNavItems(menus)}
         </Menu>
-      </Sider>
-      <Switch>
-        <AuthRoute path={`${prefix}/subNav1`} component={sub1} />
-        <AuthRoute path={`${prefix}/subNav2/option1`} component={option1} />
-      </Switch>
+      </Header>
+      <Layout>
+        <Sider width={200} style={{ background: '#fff' }}>
+          <Menu
+            mode="inline"
+            openkeys={openKeys}
+            selectedKeys={selectedKeys}
+            style={{ height: '100%', borderRight: 0 }}
+          >
+            {getMenus(tree)}
+          </Menu>
+        </Sider>
+        <Switch>
+          <AuthRoute path={`${prefix}/subNav1`} component={sub1} />
+          <AuthRoute path={`${prefix}/subNav2/option1`} component={option1} />
+        </Switch>
+      </Layout>
+      <Footer style={{ textAlign: 'center' }}>
+        {footerText}
+      </Footer>
     </Layout>
+
   )
 }
 

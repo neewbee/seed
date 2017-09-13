@@ -13,7 +13,6 @@ const List = ({
   onDeleteItem,
   onEditItem,
   isMotion,
-  location,
   ...tableProps
 }) => {
   const handleMenuClick = (record, e) => {
@@ -117,8 +116,7 @@ const List = ({
       <Table
         {...tableProps}
         className={classnames({
-          [styles.table]: true,
-          [styles.motion]: isMotion,
+          [styles.table]: true
         })}
         bordered
         scroll={{ x: 1250 }}

@@ -46,12 +46,12 @@ const App = withRouter(({ location, app }) => {
   //   app,
   //   component: () => import('./Nav1'),
   // })
-  //
+
   // const Nav2 = dynamic({
   //   app,
   //   component: () => import('./Nav2'),
   // })
-  //
+
   // const Nav3 = dynamic({
   //   app,
   //   component: () => import('./Nav3'),
@@ -68,21 +68,8 @@ const App = withRouter(({ location, app }) => {
     id = route[0].id
   }
   return (
-    <Layout style={{ height: '100vh' }}>
-      <Header className="header">
-        <div className="logo" />
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          style={{ lineHeight: '64px' }}
-          selectedKeys={[String(id)]}
-        >
-          {getNavItems(menus)}
-        </Menu>
-      </Header>
-      <Route
-        exact
-        path="/"
+    <Switch>
+      <Route exact path="/"
         render={props => {
           return (
             <Redirect
@@ -94,16 +81,11 @@ const App = withRouter(({ location, app }) => {
           )
         }}
       />
-      <Switch>
-        <AuthRoute path="/nav1" component={Nav1} />
-        <AuthRoute path="/nav2" component={Nav2} />
-        <AuthRoute path="/nav3" component={Nav3} />
-        <Route component={NoMatch} />
-      </Switch>
-      <Footer style={{ textAlign: 'center' }}>
-        ZTO ©2016 Created by liuwei
-      </Footer>
-    </Layout>
+      <AuthRoute path="/nav1" component={Nav1} />
+      <AuthRoute path="/nav2" component={Nav2} />
+      <AuthRoute path="/nav3" component={Nav3} />
+      <Route component={NoMatch} />
+    </Switch>
   )
 })
 

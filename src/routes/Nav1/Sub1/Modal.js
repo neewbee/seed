@@ -31,13 +31,10 @@ const modal = ({
         return
       }
       const data = {
-        formData:{
-          ...getFieldsValue(),
-          key: item.key,
-        },
-        search:location.search,
+        ...getFieldsValue(),
+        key: item.key,
       }
-      data.formData.address = data.formData.address.join(' ')
+      data.address = data.address.join(' ')
       onOk(data)
     })
   }

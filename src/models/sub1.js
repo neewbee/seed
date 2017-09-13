@@ -37,8 +37,14 @@ export default modelExtend(paginationModel, {
   },
 
   effects: {
-    *query ({ payload = {} }, { call, put }) {
+    *query ({ payload }, { call, put }) {
       console.log("payload: ", payload)
+
+      // TODO no global state
+      if (!payload) {
+        const search = window.location.search
+        payload = qs.parse(search, { ignoreQueryPrefix: true })
+      }
       const data = yield call(query, payload)
 
       if (!data.error) {
@@ -82,23 +88,23 @@ export default modelExtend(paginationModel, {
       }
     },
 
-    *create ({ formData, search }, { call, put }) {
-      const data = yield call(create, formData)
+    *create ({ payload }, { call, put }) {
+      const data = yield call(create, payload)
       const { error } = data
       if ( !error ) {
         yield put({ type: 'hideModal' })
-        yield put({ type: 'query', payload:qs.parse(search, { ignoreQueryPrefix: true }) })
+        yield put({ type: 'query' })
       }
     },
 
-    *update ({ formData, search }, { select, call, put }) {
+    *update ({ payload }, { select, call, put }) {
       const id = yield select(({ sub1 }) => sub1.currentItem.id)
-      const newUser = { ...formData, id }
+      const newUser = { ...payload, id }
       const data = yield call(update, newUser)
       const { error } = data
       if (!error) {
         yield put({ type: 'hideModal' })
-        yield put({ type: 'query', payload:qs.parse(search, { ignoreQueryPrefix: true }) })
+        yield put({ type: 'query' })
       } else {
         throw data
       }

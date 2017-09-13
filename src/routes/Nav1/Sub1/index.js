@@ -26,15 +26,13 @@ const Sub1 = ({ location, dispatch, sub1, loading, ...rest }) => {
     item: modalType === 'create' ? {} : currentItem,
     visible: modalVisible,
     maskClosable: false,
-    // confirmLoading: loading.effects['user/update'],
-    confirmLoading: false,
+    confirmLoading: loading.effects['user/update'],
     title: `${modalType === 'create' ? 'Create User' : 'Update User'}`,
     wrapClassName: 'vertical-center-modal',
-    onOk ({formData, search}) {
+    onOk (payload) {
       dispatch({
         type: `sub1/${modalType}`,
-        formData,
-        search,
+        payload,
       })
     },
     onCancel () {
@@ -188,5 +186,6 @@ const Sub1 = ({ location, dispatch, sub1, loading, ...rest }) => {
 }
 
 export default withRouter(connect(({ sub1, loading, ...rest }) => {
+  console.log(loading)
   return ({ sub1, loading })
 })(Sub1))

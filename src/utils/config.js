@@ -72,7 +72,7 @@ const menu_type_2 = {
     {
       id: 2,
       pid:null,
-      name: 'Nav2',
+      name: 'Layout2',
       route: '/nav2',
     },
     {
@@ -102,7 +102,7 @@ const menu_type_2 = {
     {
       id: 3,
       pid:null,
-      name: 'Nav3',
+      name: 'Layout3',
       route: '/nav3',
     },
     {
@@ -119,7 +119,7 @@ module.exports = {
   DEFAULT_PAGE_SIZE:10,
   name: 'AntD Admin',
   prefix: 'antdAdmin',
-  footerText: 'Ant Design Admin  © 2017 zuiidea',
+  footerText: 'ZTO ©2016 Created by liuwei',
   logo: '/logo.png',
   iconFontCSS: '/iconfont.css',
   iconFontJS: '/iconfont.js',

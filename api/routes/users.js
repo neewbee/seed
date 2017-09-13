@@ -20,7 +20,7 @@ const saveUser = function (req, res) {
 const updateUser = function (req, res) {
   const { address , age, email, isMale:gender, name, nickName, phone } = req.body
   const user_id = req.params.id
-
+  console.log("patch:", user_id)
   new Model.User({id:user_id})
     .save({ address , age, email, gender, name, nickName, phone, updated_at:Date.now()})
     .then(function () {
