@@ -16,5 +16,5 @@ var getAllPosts = function (req, res) {
 
 /* Exports all methods */
 module.exports = {
-  getAllPosts:getAllPosts
+  getAllPosts:getAllPosts,
 }

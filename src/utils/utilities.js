@@ -1,15 +1,4 @@
 import lodash from 'lodash'
-/*
-* 根据Id计算当前菜单层级
-* 将id的长度对菜单数据的flag取模即可得到当前菜单的层级
-* 例如：id = 1001001 flag = 3
-* */
-
-const getLevelById = ({ id, data }) => {
-  const mod = String(id).length % Number(data.flag)
-  return mod + 1
-}
-
 
 /*@param menuData <Number> 菜单层级
 * 返回一级路由
@@ -49,11 +38,11 @@ const listToTree = (
 
   const treeList = []
   const lookup = {}
-  _list.forEach(function(obj) {
+  _list.forEach(function (obj) {
     lookup[obj[idAttr]] = obj
     obj[childrenAttr] = []
   })
-  _list.forEach(function(obj) {
+  _list.forEach(function (obj) {
     // if (obj[parentAttr] !== null) {
     //   debugger
     //   const pid = obj[parentAttr]

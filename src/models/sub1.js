@@ -1,14 +1,11 @@
 /* global window */
 import modelExtend from 'dva-model-extend'
-import config from '../utils/config'
+import qs from 'qs'
 import * as usersService from '../services/users'
 import { query, create, remove, update } from '../services/user'
 import { paginationModel } from './common'
-import qs from 'qs'
 
 const prefix = 'antdAdmin'
-
-const { queryUsers } = usersService
 
 export default modelExtend(paginationModel, {
   namespace: 'sub1',

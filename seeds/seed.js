@@ -14,7 +14,7 @@ const post = {
   categories:"dfv",
   tags:'bull',
   visibility:"can't touch me",
-  comments:"3232fr2ff"
+  comments:"3232fr2ff",
 }
 
 const users = new Array(100).fill(undefined).map((_, index) => ({
@@ -29,7 +29,7 @@ const posts = new Array(100).fill(undefined).map((_, index) => ({
   views:Math.random()*100 | 0,
 }))
 
-exports.seed = function(knex, Promise) {
+exports.seed = function (knex, Promise) {
   const initUsers = knex('users').del().then(() => {
     return knex('users').insert(users)
   })

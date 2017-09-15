@@ -1,16 +1,14 @@
 import React from 'react'
-import { connect } from 'dva'
 import { Link, Switch, Route } from 'dva/router'
-import { Layout, Menu, Breadcrumb, Icon } from 'antd'
-
+import { Layout, Menu, Icon } from 'antd'
+import PropTypes from 'PropTypes'
 import sub1 from './Sub1'
 import option1 from './Sub2/option1'
 import NoMatch from '../NoMatch'
 import { menu_type_2, footerText } from '../../utils/config'
 import { getRoutesByKeyValue, listToTree, getPidsAndIdByRoute, getNavMenu } from '../../utils/utilities'
 
-const { SubMenu } = Menu
-const { Header, Content, Sider, Footer } = Layout
+const { Header, Sider, Footer } = Layout
 
 
 
@@ -121,6 +119,15 @@ const Nav1 = ({ location }) => {
     </Layout>
 
   )
+}
+
+
+Nav1.propTypes = {
+  location: PropTypes.object,
+}
+AuthRoute.propTypes = {
+  component:PropTypes.element,
+  path:PropTypes.string,
 }
 
 export default Nav1

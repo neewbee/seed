@@ -1,12 +1,10 @@
-import qs from 'qs'
-
 import request from '../utils/request'
 import config from '../utils/config'
 
 const { api } = config
-const { users, user } = api
+const { users } = api
 
-export async function query (params) {
+export async function query () {
   return request(users, {
     method: 'GET',
   })

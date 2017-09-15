@@ -12,12 +12,12 @@ class localStorageManager {
 
   register (item, value) {
     this.items.add(item)
-    window.localStorage.setItem(item, value)
+    window.localStorage.setItem(item, value) // eslint-disable-line no-undef
   }
 
   clearAll () {
     for (let item of this.items) {
-      window.localStorage.removeItem(item)
+      window.localStorage.removeItem(item) // eslint-disable-line no-undef
     }
     this.items = new Set()
   }

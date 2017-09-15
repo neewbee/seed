@@ -1,10 +1,9 @@
 import React from 'react'
 import { connect } from 'dva'
-import { Link, Switch, Route, withRouter, routerRedux } from 'dva/router'
-import { Layout, Menu, Breadcrumb, Icon, Row, Col, Button, Popconfirm } from 'antd'
-
-import queryString from 'query-string'
+import { Link, withRouter, routerRedux } from 'dva/router'
+import { Layout, Breadcrumb, Row, Col, Button, Popconfirm } from 'antd'
 import qs from 'qs'
+import PropTypes from 'prop-types'
 
 import List from './List'
 import Filter from './Filter'
@@ -17,7 +16,7 @@ const breadcrumbNameMap = {
   '/nav1/subNav1': 'subNav1',
 }
 
-const Sub1 = ({ location, dispatch, sub1, loading, ...rest }) => {
+const Sub1 = ({ location, dispatch, sub1, loading }) => {
 
   const { list, pagination, currentItem, modalVisible, modalType, isMotion, selectedRowKeys } = sub1
   const { pageSize } = pagination
@@ -185,7 +184,14 @@ const Sub1 = ({ location, dispatch, sub1, loading, ...rest }) => {
   )
 }
 
-export default withRouter(connect(({ sub1, loading, ...rest }) => {
+Sub1.propTypes = {
+  location: PropTypes.string,
+  dispatch: PropTypes.func,
+  sub1: PropTypes.object,
+  loading: PropTypes.object,
+}
+
+export default withRouter(connect(({ sub1, loading }) => {
   console.log(loading)
   return ({ sub1, loading })
 })(Sub1))

@@ -6,8 +6,13 @@ import bodyParser from 'body-parser'
 import Router from './router'
 import morgan from 'morgan'
 
-const app = express()
+var path = require("path")
 
+const port = process.env.PORT
+
+const app = express()
+app.use('/assets', express.static(path.join(__dirname, '/assets')))
+console.log(path.join(__dirname, '/assets'))
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -16,6 +21,6 @@ app.use(morgan(':method :url :status :date[iso] :res[content-length] - :response
 
 Router(app)
 
-app.listen(3000, function () {
-  console.log('CORS-enabled web server listening on port 3000')
+app.listen(port, function () {
+  console.log('CORS-enabled web server listening on port' , port)
 })

@@ -1,8 +1,5 @@
 import React from 'react'
-import { connect } from 'dva'
-import { Link, Switch, Route } from 'dva/router'
-import { Layout, Menu, Breadcrumb, Icon } from 'antd'
-import sub1 from './Sub1'
+import { Layout, Menu, Icon } from 'antd'
 import config from '../../utils/config'
 
 const { Header, Content, Footer, Sider } = Layout

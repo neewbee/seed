@@ -15,7 +15,6 @@ const formItemLayout = {
 }
 
 const modal = ({
-  location='',
   item = {},
   onOk,
   form: {

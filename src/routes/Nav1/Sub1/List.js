@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Table, Modal } from 'antd'
 import classnames from 'classnames'
-import DropOption from '../../../components/DropOption'
 import { Link } from 'dva/router'
+import DropOption from '../../../components/DropOption'
 import AnimTableBody from '../../../components/DataTable/AnimTableBody'
 import styles from './List.less'
 
@@ -21,7 +21,7 @@ const List = ({
     } else if (e.key === '2') {
       confirm({
         title: 'Are you sure delete this record?',
-        onOk() {
+        onOk () {
           onDeleteItem(record.id)
         },
       })
@@ -80,7 +80,7 @@ const List = ({
       key: 'createTime',
       render: (text) => {
         return `${new Date(text).toLocaleDateString()}`
-      }
+      },
     },
     {
       title: 'Operation',
@@ -116,7 +116,7 @@ const List = ({
       <Table
         {...tableProps}
         className={classnames({
-          [styles.table]: true
+          [styles.table]: true,
         })}
         bordered
         scroll={{ x: 1250 }}

@@ -1,7 +1,5 @@
 import React from 'react'
-import { connect } from 'dva'
-import { Link, Switch, Route } from 'dva/router'
-import { Layout, Menu, Breadcrumb, Icon } from 'antd'
+import { Layout, Breadcrumb } from 'antd'
 
 const { Content } = Layout
 

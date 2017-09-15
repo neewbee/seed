@@ -1,12 +1,12 @@
-var path = require("path");
+var path = require("path")
 
 
 var DBConfig = {
   dialect: 'sqlite3',
   connection: {
-    filename: path.resolve( __dirname + './../../dev.sqlite3' )
+    filename: path.resolve( __dirname + './../../dev.sqlite3' ),
   },
-  useNullAsDefault:true
+  useNullAsDefault:true,
 }
 
 var knex = require('knex')(DBConfig)

@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
-import FilterItem from '../../../components/FilterItem'
 import {
   Form,
   Button,
@@ -12,6 +11,8 @@ import {
   Cascader,
   Switch,
 } from 'antd'
+import FilterItem from '../../../components/FilterItem'
+
 import city from '../../../utils/city'
 
 const Search = Input.Search
