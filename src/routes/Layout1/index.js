@@ -2,12 +2,9 @@ import React from 'react'
 import { connect } from 'dva'
 import { Layout, Menu, Breadcrumb } from 'antd'
 
-import List from './List'
-import Filter from './Filter'
-
 const { Header, Content, Footer } = Layout
 
-function Layout1 ({ location }) {
+function Layout1 () {
   return (
     <Layout className="layout">
       <Header>

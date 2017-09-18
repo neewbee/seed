@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, Switch, Route } from 'dva/router'
 import { Layout, Menu, Icon } from 'antd'
-import PropTypes from 'PropTypes'
+import PropTypes from 'prop-types'
 import sub1 from './Sub1'
 import option1 from './Sub2/option1'
 import NoMatch from '../NoMatch'
@@ -18,7 +18,7 @@ const tree = listToTree(menu_type_2.menu).filter(_=>_.pid === 1)
 const AuthRoute = ({ component: Component, path, ...rest }) => {
   const route = getRoutesByKeyValue('route', path, menu_type_2)
   if (!route) {
-    return <Route {...rest} render={props => <NoMatch />} />
+    return <Route {...rest} render={() => <NoMatch />} />
   } else {
     return <Route {...rest} render={props => <Component {...props} />} />
   }

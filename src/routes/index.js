@@ -1,15 +1,16 @@
 import React from 'react'
-import { Route, Redirect, withRouter, Switch } from 'dva/router'
-import PropTypes from 'PropTypes'
+import { Route, Redirect, Switch } from 'dva/router'
+import PropTypes from 'prop-types'
 import '../themes/index.less'
 import './index.less'
+import dynamic from 'dva/dynamic'
 
 import NoMatch from './NoMatch'
 import config from '../utils/config'
 import { getRoutesByKeyValue } from '../utils/utilities'
 
 import Nav1 from '../routes/Nav1'
-import Nav2 from '../routes/Nav2'
+// import Nav2 from '../routes/Nav2'
 import Nav3 from '../routes/Nav3'
 
 
@@ -26,17 +27,17 @@ const AuthRoute = ({ component: Component, path, ...rest }) => {
   }
 }
 
-const App = withRouter(({ location, app }) => {
+const App = ({ app }) => {
   // 动态加载组件
   // const Nav1 = dynamic({
   //   app,
   //   component: () => import('./Nav1'),
   // })
 
-  // const Nav2 = dynamic({
-  //   app,
-  //   component: () => import('./Nav2'),
-  // })
+  const Nav2 = dynamic({
+    app,
+    component: () => import('./Nav2'),
+  })
 
   // const Nav3 = dynamic({
   //   app,
@@ -63,11 +64,16 @@ const App = withRouter(({ location, app }) => {
       <Route component={NoMatch} />
     </Switch>
   )
-})
+}
 
 AuthRoute.propTypes = {
   component:PropTypes.element,
   path:PropTypes.string,
+}
+
+App.propTypes = {
+  app:PropTypes.object,
+  location:PropTypes.string,
 }
 
 
