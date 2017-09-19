@@ -12,9 +12,6 @@ class Nav2 extends Component {
   render () {
     return (
       <Layout>
-        {(() => {
-          throw new Error("error")
-        })()}
         <Header style={{ position: 'fixed', width: '100%' }}>
           <div className="logo" />
           <Menu

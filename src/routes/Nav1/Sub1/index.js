@@ -185,13 +185,12 @@ const Sub1 = ({ location, dispatch, sub1, loading }) => {
 }
 
 Sub1.propTypes = {
-  location: PropTypes.string,
+  location: PropTypes.object,
   dispatch: PropTypes.func,
   sub1: PropTypes.object,
   loading: PropTypes.object,
 }
 
 export default withRouter(connect(({ sub1, loading }) => {
-  console.log(loading)
   return ({ sub1, loading })
 })(Sub1))

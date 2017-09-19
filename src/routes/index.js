@@ -1,9 +1,10 @@
 import React from 'react'
 import { Route, Redirect, Switch } from 'dva/router'
 import PropTypes from 'prop-types'
+import dynamic from 'dva/dynamic'
 import '../themes/index.less'
 import './index.less'
-import dynamic from 'dva/dynamic'
+
 
 import NoMatch from './NoMatch'
 import config from '../utils/config'
@@ -67,7 +68,10 @@ const App = ({ app }) => {
 }
 
 AuthRoute.propTypes = {
-  component:PropTypes.element,
+  component:PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.element,
+  ]),
   path:PropTypes.string,
 }
 

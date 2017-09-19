@@ -5,7 +5,6 @@ var APIV1 = '/api/v1'
 
 module.exports = function (app) {
 
-
   /* User Routes */
   app.post(APIV1 + '/user', user.saveUser)
   app.patch(APIV1 + '/user/:id', user.updateUser)

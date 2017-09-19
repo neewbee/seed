@@ -73,8 +73,8 @@ const Nav1 = ({ location }) => {
   const prefix = firstURLSegment
 
   const { pids, id } = getPidsAndIdByRoute(location.pathname, menu_type_2)
+  const { id:navId } = getPidsAndIdByRoute(firstURLSegment, menu_type_2)
   let openKeys=-1, selectedKeys
-
   // 去掉一位一级路由id
   pids.pop()
 
@@ -83,7 +83,7 @@ const Nav1 = ({ location }) => {
     openKeys = pids
   }
   selectedKeys =  [String(id)]
-
+  console.log("selectedKeys", selectedKeys)
   return (
     <Layout style={{ height: '100vh' }}>
       <Header className="header">
@@ -92,7 +92,7 @@ const Nav1 = ({ location }) => {
           theme="dark"
           mode="horizontal"
           style={{ lineHeight: '64px' }}
-          selectedKeys={[String(id)]}
+          selectedKeys={[String(navId)]}
         >
           {getNavItems(menus)}
         </Menu>
@@ -126,7 +126,10 @@ Nav1.propTypes = {
   location: PropTypes.object,
 }
 AuthRoute.propTypes = {
-  component:PropTypes.element,
+  component:PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.element,
+  ]),
   path:PropTypes.string,
 }
 
