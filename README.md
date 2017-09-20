@@ -22,6 +22,33 @@ Start server.
 $ npm run dev
 ```
 
+### 接入指南（WIP）
+当前项目有三个布局放在一起，实际开发的时候要去掉其他两个。关于路由的使用方法请参考[react-router](https://reacttraining.com/react-router/web/guides/philosophy)
+ 
+ `route/index.js` 
+
+```jsx
+<Switch>
+  <Route exact path="/"
+    render={props => {
+      return (
+        <Redirect
+          to={{
+            pathname: '/nav1',
+            state: { from: props.location },
+          }}
+        />
+      )
+    }}
+  />
+  <AuthRoute path="/nav1" component={Nav1} />
+  <AuthRoute path="/nav2" component={Nav2} />
+  <AuthRoute path="/nav3" component={Nav3} />
+  <Route component={NoMatch} />
+</Switch>
+```
+
+
 ## known issues
 
 * install sqlite@3.1.11 in CentOS6 will give error `GLIBC_2.14 not found` install sqlite3@3.1.10 instead

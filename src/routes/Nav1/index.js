@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link, Switch, Route } from 'dva/router'
-import { Layout, Menu, Icon } from 'antd'
+import { Layout, Menu, Icon ,Dropdown, Avatar } from 'antd'
 import PropTypes from 'prop-types'
+
+import styles from './index.less'
 import sub1 from './Sub1'
 import option1 from './Sub2/option1'
 import NoMatch from '../NoMatch'
@@ -83,19 +85,36 @@ const Nav1 = ({ location }) => {
     openKeys = pids
   }
   selectedKeys =  [String(id)]
-  console.log("selectedKeys", selectedKeys)
+
+
+  const menu = (
+    <Menu>
+      <Menu.Item>
+        <a target="_blank" rel="noopener noreferrer" onClick={() => {}}>注销</a>
+      </Menu.Item>
+    </Menu>
+  )
+
   return (
     <Layout style={{ height: '100vh' }}>
-      <Header className="header">
-        <div className="logo" />
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          style={{ lineHeight: '64px' }}
-          selectedKeys={[String(navId)]}
-        >
-          {getNavItems(menus)}
-        </Menu>
+      <Header className={styles.header}>
+        <div className={styles.logo} />
+        <div>
+          <Menu
+            theme="dark"
+            mode="horizontal"
+            style={{ lineHeight: '64px' }}
+            selectedKeys={[String(navId)]}
+          >
+            {getNavItems(menus)}
+          </Menu>
+        </div>
+        <Dropdown overlay={menu} placement="bottomCenter">
+          <div className={styles.avatar}>
+            <Avatar icon="user" />
+            <span className={styles.name}>刘伟</span>
+          </div>
+        </Dropdown>
       </Header>
       <Layout>
         <Sider width={200} style={{ background: '#fff' }}>
