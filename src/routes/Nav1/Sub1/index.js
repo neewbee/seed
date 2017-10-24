@@ -92,11 +92,6 @@ const Sub1 = ({ location, dispatch, sub1, loading }) => {
       ...location.query,
     },
     onFilterChange (value) {
-      console.log("qs.stringify", qs.stringify({
-        ...value,
-        page: 1,
-        pageSize,
-      }))
       dispatch(routerRedux.push({
         pathname: location.pathname,
         search: qs.stringify({
@@ -132,7 +127,7 @@ const Sub1 = ({ location, dispatch, sub1, loading }) => {
 
   const handleDeleteItems = () => {
     dispatch({
-      type: 'user/multiDelete',
+      type: 'sub1/multiDelete',
       payload: {
         ids: selectedRowKeys,
       },

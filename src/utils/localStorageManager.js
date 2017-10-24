@@ -1,5 +1,5 @@
 /*
-* @author liuwei @ZTO devops
+* @author liuwei
 *
 * manage localStorages
 * */

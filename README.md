@@ -1,5 +1,7 @@
 # 前端开发种子工程
 
+针对中后台CRUD业务的种子工程，api使用nodejs搭配ORM框架，前端技术栈为dva+andt+roadhog。
+
 ## 主要框架
 * [antd] - UI framework
 * [dva] - data management
@@ -16,7 +18,16 @@ Install dependencies.
 $ npm install
 ```
 
-Start server.
+global install knex
+```bash
+$ npm install knex -g
+```
+generate and populate the database
+```bash
+$ knex migrate:latest && knex seed:run
+```
+
+Start project and happy hacking :beer:
 
 ```bash
 $ npm run dev

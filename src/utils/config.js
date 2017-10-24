@@ -1,4 +1,4 @@
-const APIV1 = 'http://10.9.35.41:3000/api/v1'
+const APIV1 = 'http://localhost:3000/api/v1'
 const APIV2 = '/api/v2'
 const menu_type_2 = {
   flag: 1,
@@ -75,17 +75,7 @@ const menu_type_2 = {
 module.exports = {
   menu_type_2,
   DEFAULT_PAGE_SIZE:10,
-  name: 'AntD Admin',
-  prefix: 'antdAdmin',
-  footerText: 'ZTO ©2016 Created by liuwei',
-  logo: '/logo.png',
-  iconFontCSS: '/iconfont.css',
-  iconFontJS: '/iconfont.js',
-  CORS: [],
-  openPages: ['/login'],
-  apiPrefix: '/api/v1',
-  APIV1,
-  APIV2,
+  footerText: '2016 Created by liuwei',
   api: {
     userLogin: `${APIV1}/user/login`,
     userLogout: `${APIV1}/user/logout`,

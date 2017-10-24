@@ -2,7 +2,7 @@
   "name": "dva-example-user-dashboard",
   "private": true,
   "scripts": {
-    "start": "cross-env PORT=8000 roadhog server",
+    "start": "cross-env PORT=8000 CLEAR_CONSOLE=none roadhog server",
     "api": "cross-env PORT=3000 nodemon ./api/bin/api.js",
     "build": "roadhog build",
     "dev": "concurrently -r \"npm run start\"  \"npm run api\" --kill-others ",
@@ -19,7 +19,6 @@
     "dva-loading": "^0.3.0",
     "dva-model-extend": "^0.1.1",
     "history": "^4.7.2",
-    "knex": "^0.13.0",
     "morgan": "^1.8.2",
     "prop-types": "^15.5.10",
     "qs": "^6.5.1",
@@ -27,7 +26,7 @@
     "rc-tween-one": "^1.4.5",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "sqlite3": "^3.1.10"
+    "sqlite3": "^3.1.13"
   },
   "devDependencies": {
     "@types/react": "^15.6.1",

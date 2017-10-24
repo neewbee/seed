@@ -1,9 +1,8 @@
 import React from 'react'
 import { Layout, Menu, Icon } from 'antd'
-import config from '../../utils/config'
+import { footerText } from '../../utils/config'
 
 const { Header, Content, Footer, Sider } = Layout
-const { footerText } = config
 
 const Nav1 = () =>
   <Layout>

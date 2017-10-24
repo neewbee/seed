@@ -95,12 +95,11 @@ const getUser = function (req, res) {
 }
 /* Get a user */
 const deleteUsers = function (req, res) {
-  const userId = req.params.id
+  const ids = req.body.ids
   new Model.User()
-    .where('id', userId)
-    .fetch()
-    .then(function (user) {
-      res.json(user)
+    .query().whereIn('id', ids).del()
+    .then(() => {
+      res.status(202).end()
     })
     .catch(function (error) {
       console.log(error)

@@ -11,10 +11,10 @@ module.exports = function (app) {
 
   // TODO 逻辑删除
   app.delete(APIV1 + '/user/:id', user.deleteUser)
+  app.delete(APIV1 + '/users', user.deleteUsers)
 
   app.get(APIV1 + '/user/:id', user.getUser)
   app.get(APIV1 + '/posts', posts.getAllPosts)
 
   app.get(APIV1 + '/users', user.getAllUsers)
-  app.post(APIV1 + '/user/delete', user.deleteUsers)
 }

@@ -1,7 +1,6 @@
 import request from '../utils/request'
-import config from '../utils/config'
+import { api } from '../utils/config'
 
-const { api } = config
 const { users } = api
 
 export async function query () {
@@ -11,8 +10,8 @@ export async function query () {
 }
 
 export async function remove (params) {
-  return request(`${users}/delete`, {
-    method: 'POST',
+  return request(`${users}`, {
+    method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },

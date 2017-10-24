@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { Layout, Menu, Breadcrumb } from 'antd'
-import config from '../../utils/config'
+import { footerText } from '../../utils/config'
 
 const { Header, Content, Footer } = Layout
-const { footerText } = config
 
 class Nav2 extends Component {
   constructor () {
